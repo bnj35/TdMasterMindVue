@@ -1,5 +1,8 @@
 <script setup>
-import { computed, defineEmits, ref, onMounted, inject } from 'vue';
+import { computed, defineEmits, ref, onMounted, inject, defineProps } from 'vue';
+
+const length = defineProps(['length']);
+
 
 const codeLength = inject('codeLength');
 
