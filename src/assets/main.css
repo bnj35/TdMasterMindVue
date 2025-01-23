@@ -78,7 +78,7 @@ a:hover {
 
 .stat{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 20px 0;
 }
 
@@ -89,13 +89,27 @@ a:hover {
 }
 
 .last-attempt{
-  display: flex;
-  flex-direction: column;
-  justify-content: auto;
+  margin-top: 10px;
+  color: #00bfff;
 }
-
 
 .input-field{
   display: flex;
   flex-direction: row;
+}
+
+.stats-page {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.player {
+  font-size: 1.2em;
+  margin: 10px 0;
 }

@@ -1,6 +1,6 @@
 # megamind
 
-This template should help get you started developing with Vue 3 in Vite.
+Projet de cours basé sur le jeu de mastermind codé en vue.js
 
 ## Recommended IDE Setup
 

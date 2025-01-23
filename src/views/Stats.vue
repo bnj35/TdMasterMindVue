@@ -31,36 +31,38 @@ const topPlayers = computed(() => {
 </script>
 
 <template>
-  <div>
-    <section id="top-players">
-    <h2>Top 3 Players</h2>
-    <ul>
+  <div class="stats-page">
+    <section id="top-players" class="section">
+      <h2>Top 3 Players</h2>
+      <ul>
         <li v-if="!topPlayers.length">
-            No stats available
+          No stats available
         </li>
-      <li v-for="player in topPlayers" :key="player.pseudo">
-        {{ player.pseudo }} - Win Ratio: {{ (player.ratio * 100).toFixed(2) }}%
-      </li>
-    </ul>
+        <li v-for="player in topPlayers" :key="player.pseudo" class="player">
+          {{ player.pseudo }} - Win Ratio: {{ (player.ratio * 100).toFixed(2) }}%
+        </li>
+        <li>
+          <router-link to="/"><button>Retour à l'accueil</button></router-link>
+        </li>
+      </ul>
     </section>
-    <section id="stats">
-    <h1>Statistics</h1>
-    <ul>
-      <li v-for="stat in stats" :key="stat.id" class="stat">
-        <h3>Pseudo:</h3> <p>{{ stat.pseudo }}</p>
-        <h3>Code à trouver: </h3><p>{{ stat.code }}</p>
-        <h3>Résultat: </h3><p>{{ stat.result }}</p>
-        <div v-if="stat.result === 'lost'" class="last-attempt">
-          <h4>Dernière combinaison: </h4><p>{{ stat.lastAttempt.value }}</p>
-          <h4>Correctement placé: </h4><p>{{ stat.lastAttempt.correctlyPlaced }}</p>
-          <h4>Correct mais mal placé:</h4><p> {{ stat.lastAttempt.misplaced }}</p>
-        </div>
-      </li>
-      <li v-if="!stats.length">No stats available</li>
-      <li>
-        <router-link to="/"><button>Retour à l'accueil</button></router-link>
-      </li>
-    </ul>
+    <section id="stats" class="section">
+      <h1>Statistics</h1>
+      <ul>
+        <li v-for="stat in stats" :key="stat.id" class="stat">
+          <div class="stat-details">
+            <h3>Pseudo:</h3> <p>{{ stat.pseudo }}</p>
+            <h3>Code à trouver: </h3><p>{{ stat.code }}</p>
+            <h3>Résultat: </h3><p>{{ stat.result }}</p>
+          </div>
+          <div v-if="stat.result === 'lost'" class="last-attempt">
+            <h4>Dernière combinaison: </h4><p>{{ stat.lastAttempt.value }}</p>
+            <h4>Correctement placé: </h4><p>{{ stat.lastAttempt.correctlyPlaced }}</p>
+            <h4>Correct mais mal placé:</h4><p> {{ stat.lastAttempt.misplaced }}</p>
+          </div>
+        </li>
+        <li v-if="!stats.length">No stats available</li>
+      </ul>
     </section>
   </div>
 </template>
