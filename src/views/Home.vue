@@ -1,7 +1,6 @@
 <script setup>
-import { onMounted, onUnmounted, inject } from 'vue';
+import { onMounted, onUnmounted, inject, ref } from 'vue';
 import { useGame } from '../services/useGame';
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const { code, generateCode } = useGame();
@@ -23,10 +22,14 @@ const logout = () => {
 };
 
 let intervalId;
+const showAnimation = ref(true);
 
 onMounted(() => {
   generateCode();
-  intervalId = setInterval(generateCode, 2000);
+  intervalId = setInterval(() => {
+    generateCode();
+    showAnimation.value = !showAnimation.value;
+  }, 1000);
 });
 
 onUnmounted(() => {
@@ -37,11 +40,13 @@ onUnmounted(() => {
 <template>
   <div class="home">
     <header>
-        <img src="../assets/logo.png" alt="megamind" width="150">
-        <div class="header-content">
-      <h1>MegaMind</h1>
-      <p class="code">{{ code }}</p>
-        </div>
+      <img src="../assets/logo.png" alt="megamind" width="150">
+      <div class="header-content">
+        <transition name="fade">
+          <p v-if="showAnimation" class="code">{{ code }}</p>
+        </transition>
+        <h1>MegaMind</h1>
+      </div>
     </header>
     <section>
       <h2>Règles du Jeu</h2>
@@ -60,11 +65,11 @@ onUnmounted(() => {
     <button @click="saveSettings">Commencer la partie</button>
 
     <section>
-        <h2>Statistiques</h2>
-        <div id="stats">
+      <h2>Statistiques</h2>
+      <div id="stats">
         <router-link to="/stats"><button>Voir les statistiques</button></router-link>
         <button @click="logout">Se déconnecter</button>
-        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -77,11 +82,13 @@ header {
 
 .code {
   font-size: 2em;
-  animation: fade 2s infinite ease-in-out;
 }
 
-@keyframes fade {
-    0%, 100% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(10px); opacity: 0.5; }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
 }
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 </style>
