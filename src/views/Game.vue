@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div id="game">
     <h1>Bienvenue {{ pseudo }}</h1>
     <div v-if="state === 'in_progress'">
       <CodeField :length="codeLength" @submit="handleAttemptSubmit" />

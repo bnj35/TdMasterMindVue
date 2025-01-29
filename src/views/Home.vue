@@ -38,8 +38,10 @@ onUnmounted(() => {
   <div class="home">
     <header>
         <img src="../assets/logo.png" alt="megamind" width="150">
+        <div class="header-content">
       <h1>MegaMind</h1>
       <p class="code">{{ code }}</p>
+        </div>
     </header>
     <section>
       <h2>Règles du Jeu</h2>
@@ -47,20 +49,22 @@ onUnmounted(() => {
         Le but du jeu est de deviner le code secret en un minimum de tentatives.
       </p>
     </section>
-    <section>
+    <section id="settings">
       <h2>Entrez votre pseudo</h2>
       <input v-model="pseudo" placeholder="Enter your pseudo" type="text"/>
       <h2>Choisissez la taille du code</h2>
       <input type="number" v-model="codeLength" min="2" max="10" id="taille"/>
       <h2>Choisissez le nombre de tentatives max</h2>
       <input type="number" v-model="maxAttempts" min="5" max="20" id="tent"/>
-    <button @click="saveSettings">Commencer la partie</button>
     </section>
+    <button @click="saveSettings">Commencer la partie</button>
+
     <section>
         <h2>Statistiques</h2>
+        <div id="stats">
         <router-link to="/stats"><button>Voir les statistiques</button></router-link>
-        <h3>Se déconnecter</h3>
         <button @click="logout">Se déconnecter</button>
+        </div>
     </section>
   </div>
 </template>

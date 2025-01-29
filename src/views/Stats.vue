@@ -31,7 +31,7 @@ const topPlayers = computed(() => {
 </script>
 
 <template>
-  <div class="stats-page">
+  <div id="stats-page">
     <section id="top-players" class="section">
       <h2>Top 3 Players</h2>
       <ul>
@@ -49,17 +49,17 @@ const topPlayers = computed(() => {
     <section id="stats" class="section">
       <h1>Statistics</h1>
       <ul>
-        <li v-for="stat in stats" :key="stat.id" class="stat">
+        <li v-for="stat in stats" :key="stat.id" id="stat">
           <div class="stat-details">
             <h3>Pseudo:</h3> <p>{{ stat.pseudo }}</p>
             <h3>Code à trouver: </h3><p>{{ stat.code }}</p>
             <h3>Résultat: </h3><p>{{ stat.result }}</p>
-          </div>
           <div v-if="stat.result === 'lost'" class="last-attempt">
             <h4>Dernière combinaison: </h4><p>{{ stat.lastAttempt.value }}</p>
             <h4>Correctement placé: </h4><p>{{ stat.lastAttempt.correctlyPlaced }}</p>
             <h4>Correct mais mal placé:</h4><p> {{ stat.lastAttempt.misplaced }}</p>
           </div>
+        </div>
         </li>
         <li v-if="!stats.length">No stats available</li>
       </ul>
